@@ -6,8 +6,9 @@ const path = require('path');
 const PORT = process.env.port || 3001;
 
 const app = express();
-const htmlRoutes = require('./routes/html-routes.js')
-const apiRoutes = require('./routes/api-routes.js')
+
+const apiRoutes = require('./routes/apiRoutes.js')
+const htmlRoutes = require('./routes/htmlRoutes.js')
 
 // app.use(clog);
 
@@ -17,9 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('public'));
 
-
-app.use('/', htmlRoutes);
 app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
+
+
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
